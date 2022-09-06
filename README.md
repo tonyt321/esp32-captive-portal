@@ -3,8 +3,7 @@ A simple ESP8266 based setup to connect to an owie device and pull the battery i
 
 ## Demo
 <br>OwieWatcher bootup</p>
-<p><img src="https://github.com/TurdSnack/owiewatcher/blob/main/Boot.gif" alt="BootDemo" width="200px">
-<iframe src="https://giphy.com/embed/gqRG66TQgb4DqRATDP" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/gqRG66TQgb4DqRATDP">via GIPHY</a></p>
+<p><img src="https://media.giphy.com/media/gqRG66TQgb4DqRATDP/giphy-downsized-large.gif" alt="BootDemo" width="200px">
 <br>OwieWatcher refresh</p>
 <p><img src="https://github.com/TurdSnack/owiewatcher/blob/main/Refresh.gif" alt="RefreshDemo" width="200px">
 
