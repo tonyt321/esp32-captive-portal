@@ -2,8 +2,8 @@
 A simple ESP8266 based setup to connect to an owie device and pull the battery info from the status webpage for output to an OLED display.
 
 ## Demo
-![BootDemo](https://i.imgur.com/LoV5n43.gif)
-![RefreshDemo](https://i.imgur.com/D6lNwEH.gif)
+<p><img src="https://i.imgur.com/LoV5n43.gif" alt="BootDemo" width="282px">
+<p><img src="https://i.imgur.com/D6lNwEH.gif" alt="RefreshDemo" width="282px">
 
 
 ## Setup
