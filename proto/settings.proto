@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+
+message SettingsMsg {
+  uint32 quick_power_cycle_count = 1;
+  string ap_name = 2;
+  string ap_password = 3;
+  int32 graceful_shutdown_count = 4;
+  reserved 5; // used to be BMS serial override
+  string ap_self_password = 6;
+  string ap_self_name = 7;
+  int32 wifi_power = 8;
+  bool is_locked = 9; // if the board is actively locked/parked
+  bool locking_enabled = 10; // if the board locking functionality is enabled ('armed')
+  reserved 11;
+  int32 redf = 12;
+  int32 greenf = 13;
+  int32 bluef = 14;
+  int32 whitef = 15;
+  int32 ledf = 16;
+  int32 ap_self_redt = 17;
+  int32 ap_self_greent = 18;
+  int32 ap_self_bluet = 19;
+  int32 ap_self_whitet = 20;
+  int32 ap_self_ledt = 21;
+}
