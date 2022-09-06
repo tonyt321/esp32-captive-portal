@@ -4,7 +4,7 @@ A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwhee
 ## Demo
 <br>OwieWatcher bootup</p>
 <p><img src="https://github.com/TurdSnack/owiewatcher/blob/main/Boot.gif" alt="BootDemo" width="200px">
-<br>OwieWatcher refresh</p>
+<br>OwieWatcher refresh(every 10 seconds)</p>
 <p><img src="https://github.com/TurdSnack/owiewatcher/blob/main/Refresh.gif" alt="RefreshDemo" width="200px">
 
 
