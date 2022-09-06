@@ -1,4 +1,8 @@
 # OwieWatcher
+
+todo
+- use the u8g2 library better display support
+
 A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwheel/Owie) device and pull the battery info from the status webpage for output to an OLED display. The current code configuration outputs the Voltage, BMS SOC & OVERRIDEN SOC.
 
 ## Demo
