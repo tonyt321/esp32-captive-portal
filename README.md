@@ -9,7 +9,7 @@ A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwhee
 
 
 ## Setup
-Download the `owie-watcher.ino` file and flash to your ESP8266, make sure you have the appropriate libraries downloaded.
+Download the `owie-watcher.ino` file and update the `ssid` & `password` variables. Then flash to your ESP8266, making sure you have the appropriate libraries downloaded.
 
 ## Required Libraries
 * [ESP8266WiFi](https://github.com/esp8266/Arduino)
