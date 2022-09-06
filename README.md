@@ -1,5 +1,5 @@
 # OwieWatcher
-A simple ESP8266 based setup to connect to an owie device and pull the battery info from the status webpage for output to an OLED display.
+A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwheel/Owie) device and pull the battery info from the status webpage for output to an OLED display. The current code configuration outputs the Voltage, BMS SOC & OVERRIDEN SOC.
 
 ## Demo
 <br>OwieWatcher bootup</p>
