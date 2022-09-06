@@ -12,9 +12,9 @@ A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwhee
 Download the `owie-watcher.ino` file and flash to your ESP8266, make sure you have the appropriate libraries downloaded.
 
 ## Required Libraries
-* ESP8266WiFi
-* ESP8266WiFiMulti
-* ESP8266HTTPClient
+* [ESP8266WiFi](https://github.com/esp8266/Arduino)
+* [ESP8266WiFiMulti](https://github.com/esp8266/Arduino)
+* [ESP8266HTTPClient](https://github.com/esp8266/Arduino)
 * [Adafruit_SSD1306_Wemos_OLED](https://github.com/stblassitude/Adafruit_SSD1306_Wemos_OLED.git)
 * [Adafruit-GFX](https://github.com/adafruit/Adafruit-GFX-Library)
 
