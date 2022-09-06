@@ -1,5 +1,5 @@
 # OwieWatcher
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lolwheel/Owie)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tonyt321/OWIE-OLED)
 
 todo
 - use the u8g2 library better display support
