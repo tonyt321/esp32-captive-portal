@@ -1,9 +1,10 @@
 # OwieWatcher
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lolwheel/Owie)
 
 todo
 - use the u8g2 library better display support
 
-A simple ESP8266 based sketch to connect to an [owie](https://github.com/lolwheel/Owie) device and pull the battery info from the status webpage for output to an OLED display. The current code configuration outputs the Voltage, BMS SOC & OVERRIDEN SOC.
+A simple ESP8266 based sketch to connect to an [owie](https://github.com/tonyt321/OWIE-OLED) device and pull the battery info from the status webpage for output to an OLED display. The current code configuration outputs the Voltage, BMS SOC & OVERRIDEN SOC.
 
 ## Demo
 <br>OwieWatcher bootup</p>
