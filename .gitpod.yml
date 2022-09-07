@@ -1,0 +1,11 @@
+vscode:
+  extensions:
+    - vscode.cpp
+
+tasks:
+  - before: platformio upgrade
+  - init: platformio test -e native
+  - command: platformio run -e d1_mini_lite_clone
+
+image:
+  file: .gitpod.Dockerfile
