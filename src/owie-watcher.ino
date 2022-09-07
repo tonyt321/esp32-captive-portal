@@ -1,6 +1,4 @@
 #include <Arduino.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
@@ -11,7 +9,7 @@ ESP8266WiFiMulti WiFiMulti;
 char* ssid = "owie-ssid";
 char* password = "owie-wifi-password";
 #define OLED_RESET 0  // GPIO0
-Adafruit_SSD1306 display(OLED_RESET);
+//Adafruit_SSD1306 display(OLED_RESET);
 
 //Boot Logo, change if you dont like it
 static const unsigned char PROGMEM logo16_glcd_bmp[] =
@@ -66,21 +64,21 @@ static const unsigned char PROGMEM logo16_glcd_bmp[] =
 
 void setup() {
 
-  Serial.begin(115200);
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.clearDisplay();
-  display.drawBitmap(0, 0,  logo16_glcd_bmp, 64, 48, 1);
-  display.display();
+  //Serial.begin(115200);
+  //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  //display.clearDisplay();
+  //display.drawBitmap(0, 0,  logo16_glcd_bmp, 64, 48, 1);
+  //display.display();
   delay(2000);
-  display.clearDisplay();
+  //display.clearDisplay();
 
-  Serial.println();
-  Serial.println();
-  Serial.println();
+  //Serial.println();
+  //Serial.println();
+  //Serial.println();
 
   for (uint8_t t = 4; t > 0; t--) {
-    Serial.printf("[SETUP] WAIT %d...\n", t);
-    Serial.flush();
+   // Serial.printf("[SETUP] WAIT %d...\n", t);
+   // Serial.flush();
     delay(1000);
   }
 
@@ -95,26 +93,26 @@ void loop() {
     WiFiClient client;
     HTTPClient http;
     
-    display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-    display.setTextSize(1);
-    display.setTextColor(WHITE,BLACK);
+    //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+    //display.setTextSize(1);
+    //display.setTextColor(WHITE,BLACK);
     
-    display.setCursor(0, 0);
-    Serial.print("[HTTP] begin...\n");
+    //display.setCursor(0, 0);
+    //Serial.print("[HTTP] begin...\n");
 
     http.begin(client, "http://192.168.4.1");
 
-    Serial.print("[HTTP] GET...\n");
+   // Serial.print("[HTTP] GET...\n");
     int httpCode = http.GET();
     if (httpCode > 0) {
-      Serial.printf("[HTTP] GET... code: %d\n", httpCode);
+    //  Serial.printf("[HTTP] GET... code: %d\n", httpCode);
 
       if (httpCode == HTTP_CODE_OK) {
         int len = http.getSize();
 
 #if 0
         // with API
-        Serial.println(http.getString());
+       // Serial.println(http.getString());
 #else
         WiFiClient* stream = &client;
         
@@ -122,31 +120,31 @@ void loop() {
           char vbuff[5] = {0};
           char socbuff[4] = {0};
           char ovrbuff[4] = {0};
-          display.setCursor(0, 0);
+          //display.setCursor(0, 0);
           stream->find("Voltage");
           while(stream->find("TOTAL_VOLTAGE\">")){
             stream->readBytesUntil('<',vbuff,5);
-            Serial.print(vbuff);
-            display.print("VOL:");
-            display.print(vbuff);
-            display.print("v");
-            display.println();
-            display.display();
+           // Serial.print(vbuff);
+            //display.print("VOL:");
+            //display.print(vbuff);
+            //display.print("v");
+           // display.println();
+            //display.display();
             stream->find("BMS_SOC\">");
             stream->readBytesUntil('<',socbuff,4);
-            display.println();
-            display.print("BMS:");
-            Serial.println();
-            Serial.print(socbuff);
-            display.print(socbuff);
-            display.println();
-            display.display();
+            //display.println();
+            //display.print("BMS:");
+         //   Serial.println();
+         //   Serial.print(socbuff);
+           //display.print(socbuff);
+            //display.println();
+            //display.display();
             stream->find("OVERRIDDEN_SOC\">");
             stream->readBytesUntil('<',ovrbuff,4);
-            Serial.println();
-            Serial.print(ovrbuff);
-            display.println();
-            display.print("OVR:");
+         //   Serial.println();
+         //   Serial.print(ovrbuff);
+           // display.println();
+            /* display.print("OVR:");
             display.print(ovrbuff);
             display.println();
             display.display();
@@ -169,24 +167,25 @@ void loop() {
             display.print(".");
             Serial.print(".");
             display.display();
-            delay(1 * 1000);
+            delay(1 * 1000); 
+            */
             return;
             }
         }
 #endif
-        Serial.println();
-        Serial.print("[HTTP] connection closed or file end.\n");
+      //  Serial.println();
+      //  Serial.print("[HTTP] connection closed or file end.\n");
       }
     } else {
-      Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+    //  Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
     }
 
     http.end();
   }
 
-  Serial.print("RETRYING...");
-  display.setCursor(0, 41);
-  display.print("RETRYING  ");
-  display.display();
+ // Serial.print("RETRYING...");  //testbb
+  //display.setCursor(0, 41);
+  //display.print("RETRYING  ");
+  //display.display();
   delay(30 * 1000);
 }
