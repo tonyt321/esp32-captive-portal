@@ -1,17 +1,77 @@
 #include <Arduino.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <U8g2lib.h>  //    https://github.com/olikraus/u8g2/wiki/u8g2setupcpp
+#include <Wire.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 
+
 ESP8266WiFiMulti WiFiMulti;
 
 // REPLACE WITH YOUR NETWORK CREDENTIALS
-char* ssid = "owie-ssid";
-char* password = "owie-wifi-password";
-#define OLED_RESET 0  // GPIO0
-Adafruit_SSD1306 display(OLED_RESET);
+char* ssid = "Owie-8282";
+char* password = "";
+
+// uncomment the one that works for your OLED if none check the U8G2 example codes
+//                                              R is the rotation change to pick direction   R0,R1,R2,R3 
+//U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R2, /* reset=*/ U8X8_PIN_NONE);                        //1.3 inch  128x64 generic
+U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ D4);                                    //2.42 inch 128x64 generic
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+void wifiscan() 
+{  // WiFi.scanNetworks will return the number of networks found
+  int n = WiFi.scanNetworks();
+  Serial.println("scan done");
+  if (n == 0) {
+      Serial.println("no networks found");
+  } else {
+    Serial.print(n);
+    Serial.println(" networks found");
+    for (int i = 0; i < n; ++i) {
+      // Print SSID and RSSI for each network found
+      Serial.print(i + 1);
+      Serial.print(": ");
+      Serial.print(WiFi.SSID(i));
+      Serial.print(" strength: ");
+      Serial.print(WiFi.RSSI(i));
+      Serial.print("   encrypt = ");
+      Serial.println(WiFi.encryptionType(i));
+      delay(5000);
+      
+        u8g2.firstPage();
+  do {
+
+    u8g2.setFont(u8g2_font_lubI12_te);    // 15 high font
+        //u8g2.setFont(u8g2_font_maniac_tf);dual outline font      //u8g2_font_inr33_t_cyrillic);//u8g2_font_maniac_tf//u8g2_font_maniac_tf//u8g2_font_freedoomr25_tn//u8g2_font_7Segments_26x42_mn
+    u8g2.setCursor(0,24);
+    u8g2.print (WiFi.SSID(i));
+  } while ( u8g2.nextPage() );
+}
+    }
+  }
+
+
+
+//////////////////////////////
+void displayip() 
+{
+  u8g2.firstPage();
+  do {
+
+    u8g2.setFont(u8g2_font_lubI12_te);    // 15 high font
+        //u8g2.setFont(u8g2_font_maniac_tf);dual outline font      //u8g2_font_inr33_t_cyrillic);//u8g2_font_maniac_tf//u8g2_font_maniac_tf//u8g2_font_freedoomr25_tn//u8g2_font_7Segments_26x42_mn
+    u8g2.setCursor(0,24);
+    String IPaddress =  WiFi.localIP().toString();
+    u8g2.print (IPaddress);
+  } while ( u8g2.nextPage() );
+}
+///////////////////////////////////////////////////
+
+
+
+
 
 //Boot Logo, change if you dont like it
 static const unsigned char PROGMEM logo16_glcd_bmp[] =
@@ -65,14 +125,20 @@ static const unsigned char PROGMEM logo16_glcd_bmp[] =
   0b11111111, 0b11111111, 0b11111111, 0b11111111, 0b11111111, 0b11111111, 0b11111111, 0b11111111 };
 
 void setup() {
+Serial.begin(115200);
+u8g2.begin();
+u8g2.setFontMode(0);    // enable transparent mode, which is faster
+  
+displayip();
+wifiscan();
+  
 
-  Serial.begin(115200);
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.clearDisplay();
-  display.drawBitmap(0, 0,  logo16_glcd_bmp, 64, 48, 1);
-  display.display();
+  //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  // display.clearDisplay();
+  //display.drawBitmap(0, 0,  logo16_glcd_bmp, 64, 48, 1);
+  //display.display();
   delay(2000);
-  display.clearDisplay();
+  //display.clearDisplay();
 
   Serial.println();
   Serial.println();
@@ -95,11 +161,11 @@ void loop() {
     WiFiClient client;
     HTTPClient http;
     
-    display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-    display.setTextSize(1);
-    display.setTextColor(WHITE,BLACK);
+  //  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  //  display.setTextSize(1);
+  //  display.setTextColor(WHITE,BLACK);
     
-    display.setCursor(0, 0);
+  //  display.setCursor(0, 0);
     Serial.print("[HTTP] begin...\n");
 
     http.begin(client, "http://192.168.4.1");
@@ -122,53 +188,53 @@ void loop() {
           char vbuff[5] = {0};
           char socbuff[4] = {0};
           char ovrbuff[4] = {0};
-          display.setCursor(0, 0);
+//          display.setCursor(0, 0);
           stream->find("Voltage");
           while(stream->find("TOTAL_VOLTAGE\">")){
             stream->readBytesUntil('<',vbuff,5);
             Serial.print(vbuff);
-            display.print("VOL:");
-            display.print(vbuff);
-            display.print("v");
-            display.println();
-            display.display();
+        //    display.print("VOL:");
+       //     display.print(vbuff);
+        //    display.print("v");
+        //    display.println();
+        //    display.display();
             stream->find("BMS_SOC\">");
             stream->readBytesUntil('<',socbuff,4);
-            display.println();
-            display.print("BMS:");
+         //   display.println();
+         //   display.print("BMS:");
             Serial.println();
             Serial.print(socbuff);
-            display.print(socbuff);
-            display.println();
-            display.display();
+         //   display.print(socbuff);
+         //   display.println();
+         //   display.display();
             stream->find("OVERRIDDEN_SOC\">");
             stream->readBytesUntil('<',ovrbuff,4);
             Serial.println();
             Serial.print(ovrbuff);
-            display.println();
-            display.print("OVR:");
-            display.print(ovrbuff);
-            display.println();
-            display.display();
-            display.print("          ");
-            display.display();
-            display.setCursor(0, 41);
+        //    display.println();
+         //   display.print("OVR:");
+         //   display.print(ovrbuff);
+         //   display.println();
+        //    display.display();
+        //    display.print("          ");
+         //   display.display();
+        //    display.setCursor(0, 41);
             delay(5 * 1000);
-            display.print("REFRESH");
-            display.display();
+        //    display.print("REFRESH");
+        //    display.display();
             Serial.print("REFRESH");
             delay(1 * 1000);
-            display.print(".");
+        //    display.print(".");
             Serial.print(".");
-            display.display();
+       //     display.display();
             delay(1 * 1000);
-            display.print(".");
+        //    display.print(".");
             Serial.print(".");
-            display.display();
+        //    display.display();
             delay(1 * 1000);
-            display.print(".");
+        //    display.print(".");
             Serial.print(".");
-            display.display();
+       //     display.display();
             delay(1 * 1000);
             return;
             }
@@ -185,8 +251,10 @@ void loop() {
   }
 
   Serial.print("RETRYING...");
-  display.setCursor(0, 41);
-  display.print("RETRYING  ");
-  display.display();
+ // display.setCursor(0, 41);
+ // display.print("RETRYING  ");
+ // display.display();
   delay(30 * 1000);
 }
+
+
