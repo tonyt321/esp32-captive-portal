@@ -1,6 +1,6 @@
 # Owie
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lolwheel/Owie)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tonyt321/esp32-captive-portal)
 
 This project is unlocks battery expansion possibilities on otherwise
 locked Onewheels, adds WiFi-based monitoring of various battery health signals such as individual cell voltages, current, etc.
