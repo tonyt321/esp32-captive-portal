@@ -5,7 +5,7 @@ vscode:
 tasks:
   - before: platformio upgrade
   - init: platformio test -e native
-  - command: platformio run -e d1_mini_lite_clone
+  - command: platformio run -e esp32dev
 
 image:
   file: .gitpod.Dockerfile

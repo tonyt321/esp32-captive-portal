@@ -1,7 +1,7 @@
 #include "network.h"
 
 #include <DNSServer.h>
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 
 #include <functional>

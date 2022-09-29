@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "ESP8266WiFi.h"
+#include "WiFi.h"
 #include "bms_main.h"
 #include "dprint.h"
 #include "recovery.h"

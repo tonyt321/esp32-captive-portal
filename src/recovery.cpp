@@ -2,7 +2,7 @@
 
 #include <ArduinoOTA.h>
 #include <DNSServer.h>
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 
